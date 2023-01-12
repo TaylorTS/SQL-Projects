@@ -1,6 +1,6 @@
 # SQL-Projects
 ## 1. Airbnb Listing Data Analysis
-In this project, I worked with a dataset ("New") that contained Airbnb listing information to answer a few key business questions. It allowed me to combine my skills in both SQL and Python, as the primary data cleaning and pre-processing were done through Python and further analysis was done through writing SQL queries. 
+In this project, I worked with a dataset ("New") that contained Airbnb listing information in Asheville, NC to answer a few key business questions. It allowed me to combine my skills in both SQL and Python, as the primary data cleaning and pre-processing were done through Python and further analysis was done through writing SQL queries. 
 
 For more information about how I used Python to complete data cleaning and pre-processing, please see [here](https://github.com/TaylorTS/SQL-Projects/blob/main/SQL_Project_Airbnb.ipynb). The codes were executed through Google Colab Notebooks. 
 
