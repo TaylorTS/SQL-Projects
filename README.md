@@ -1,4 +1,6 @@
 # SQL-Projects
+_The sole purpose of analyzing the datasets and completing the projects below is self-learning. The files included in this repository are only to showcase my knowledge and self-learning progress in SQL and data analytics._
+
 ## 1. Airbnb Listing Data Analysis
 In this project, I worked with a dataset ("New") that contained Airbnb listing information in Asheville, NC to answer a few key business questions. It allowed me to combine my skills in both SQL and Python, as the primary data cleaning and pre-processing were done through Python and further analysis was done through writing SQL queries. 
 
