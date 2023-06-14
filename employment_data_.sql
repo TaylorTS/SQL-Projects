@@ -13,12 +13,12 @@ select *
 from t_departments
 limit 10;
 
-select a.gender, left(b.from_date, 4) as 'year', count(a.emp_no) as 'number_of_employees'
-from t_employees as a
-join t_dept_emp as b
-on a.emp_no = b.emp_no
-where left(b.from_date, 4) >= '1990'
-group by year, a.gender;
+select e.gender, left(d.from_date, 4) as 'year', count(e.emp_no) as 'number_of_employees'
+from t_employees as e
+join t_dept_emp as d
+on e.emp_no = d.emp_no
+where left(d.from_date, 4) >= '1990'
+group by year, e.gender;
 
 /*Compare the number of male managers to the number of female managers from different departments for each year, starting from 1990.*/
 select *
@@ -29,47 +29,47 @@ select *
 from t_departments
 limit 10;
 
-select c.emp_no, b.yr, d.dept_name, e.gender, 
+select m.emp_no, b.yr, d.dept_name, emp.gender, 
        case when b.yr>=left(c.from_date,4) and b.yr<=left(c.to_date,4) then 1
        else 0
        end as 'active'
 from (select left(a.hire_date, 4) as 'yr'
-      from t_employees as a
+      from t_employees as e
       group by yr
       having yr>='1990'
       order by yr) as b
-cross join t_dept_manager as c
+cross join t_dept_manager as m
 join t_departments as d
 on c.dept_no = d.dept_no
-join t_employees as e
-on e.emp_no = c.emp_no
-order by c.emp_no;
+join t_employees as emp
+on emp.emp_no =m.emp_no
+order by m.emp_no;
 
 /*Compare the average salary of female versus male employees in the entire company until year 2002*/
 select *
 from t_salaries
 limit 10;
 
-select e.dept_name, c.emp_no, c.gender, round(avg(c.salary),0) as 'avg_salary', c.yr
+select dp.dept_name, c.emp_no, c.gender, round(avg(c.salary),0) as 'avg_salary', c.yr
 from (select a.emp_no, a.salary, b.gender, left(a.from_date, 4) as 'yr'
-      from t_salaries as a
-      join t_employees as b
+      from t_salaries as s
+      join t_employees as e
       on a.emp_no = b.emp_no) as c
 join t_dept_emp as d
 on c.emp_no = d.emp_no
-join t_departments as e
-on e.dept_no = d.dept_no
+join t_departments as dp
+on dp.dept_no = d.dept_no
 where c.yr <= 2002
 group by d.dept_no, c.gender, c.yr
 order by d.dept_no, c.gender, c.yr;
 
 /*Compare the highest salary of female managers and male managers by department*/
-select a.gender, c.dept_name, max(d.salary) as 'avg_salary'
-from t_employees as a
-join t_dept_manager as b
-on a.emp_no = b.emp_no
-join t_departments as c
-on b.dept_no = c.dept_no
-join t_salaries as d
-on a.emp_no = d.emp_no
-group by a.gender, c.dept_name;
+select e.gender, dp.dept_name, max(s.salary) as 'avg_salary'
+from t_employees as e
+join t_dept_manager as d
+on e.emp_no = d.emp_no
+join t_departments as dp
+on d.dept_no = dp.dept_no
+join t_salaries as s
+on e.emp_no = dp.emp_no
+group by e.gender,dp.dept_name;
