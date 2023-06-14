@@ -1,4 +1,4 @@
-#find the avg salary of the male and female employees in each department
+/*find the avg salary of the male and female employees in each department*/
 with cte as (
 	select a.emp_no, b.dept_name
     from dept_emp as a
@@ -16,11 +16,11 @@ group by c.gender, cte.dept_name
 order by cte.dept_name, c.gender
 limit 10;
 
-#find the lowest and highest dept_no
+/*find the lowest and highest dept_no*/
 select min(dept_no) as 'smallest', max(dept_no) as 'largest'
 from dept_emp;
 
-#all employees that have been hired in 2000
+/*all employees that have been hired in 2000*/
 select emp_no, first_name, last_name, hire_date
 from employees
 where left(hire_date, 4) = '2000'
