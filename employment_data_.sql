@@ -1,6 +1,6 @@
-# This project was completed while taking a SQL course through Udemy. I worked with an employment/HR data set to answer varies questions and created a Tableau dashboard to show the analysis results.
+/*This project was completed while taking a SQL course through Udemy. I worked with an employment/HR data set to answer varies questions and created a Tableau dashboard to show the analysis results.*/
 
-# Provides a breakdown between the male and female employees working in the company each year, starting from 1990. 
+/*Provides a breakdown between the male and female employees working in the company each year, starting from 1990.*/
 select *
 from t_employees
 limit 10;
@@ -20,7 +20,7 @@ on a.emp_no = b.emp_no
 where left(b.from_date, 4) >= '1990'
 group by year, a.gender;
 
-# Compare the number of male managers to the number of female managers from different departments for each year, starting from 1990.
+/*Compare the number of male managers to the number of female managers from different departments for each year, starting from 1990.*/
 select *
 from t_dept_manager
 limit 10;
@@ -45,7 +45,7 @@ join t_employees as e
 on e.emp_no = c.emp_no
 order by c.emp_no;
 
-# Compare the average salary of female versus male employees in the entire company until year 2002
+/*Compare the average salary of female versus male employees in the entire company until year 2002*/
 select *
 from t_salaries
 limit 10;
@@ -63,7 +63,7 @@ where c.yr <= 2002
 group by d.dept_no, c.gender, c.yr
 order by d.dept_no, c.gender, c.yr;
 
-# Compare the highest salary of female managers and male managers by department
+/*Compare the highest salary of female managers and male managers by department*/
 select a.gender, c.dept_name, max(d.salary) as 'avg_salary'
 from t_employees as a
 join t_dept_manager as b
